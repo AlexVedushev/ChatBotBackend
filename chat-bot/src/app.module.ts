@@ -1,16 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DialogFlowModule } from 'nestjs-dialogflow'
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { WebhookController } from './webhook/webhook.controller'
 
 @Module({
-  imports: [
-    DialogFlowModule.forRoot({
-      basePath: 'web-hooks',
-      postPath: 'dialog-flow'
-  })
-  ],
-  controllers: [AppController],
+  imports: [],
+  controllers: [AppController, WebhookController],
   providers: [AppService],
 })
 export class AppModule {}
