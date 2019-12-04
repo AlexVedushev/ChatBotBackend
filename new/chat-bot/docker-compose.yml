@@ -17,10 +17,13 @@ services:
     working_dir: /devel/packages/backend
     command: npm run start:dev
     restart: always
-    # networks:
-    #   - chat-bot
     ports:
-      - "8000"
+      - "8000:8000"
     depends_on: 
       - postgres
+
+volumes:
+  postgres:
+    external:
+      name: postgres
 
