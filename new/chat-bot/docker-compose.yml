@@ -1,0 +1,34 @@
+version: '3.3'
+services:
+
+    backend:
+        image: node:10-alpine
+        volumes:
+            - .:/devel
+        working_dir: /devel/packages/backend
+        command: npm run start:dev
+        restart: always
+        networks:
+            - magnit
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+
+    db:
+        image: postgres:11-alpine
+        restart: always
+        networks:
+            - chat-bot
+        ports:
+            - "5432:5432"
+        volumes:
+            - db:/var/lib/postgresql/data
+
+volumes:
+    db:
+        external:
+            name: chatBot-db
+
+networks:
+    chatBot:
